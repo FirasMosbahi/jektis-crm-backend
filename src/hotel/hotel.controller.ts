@@ -20,6 +20,7 @@ export class HotelController {
   @Post()
   @UseGuards(AdminGuard)
   async createRequest(@Body() requestDto: CreateHotelReservationRequestDto) {
+    console.log(requestDto);
     const data =
       await this.hotelService.createHotelReservationRequest(requestDto);
     return {

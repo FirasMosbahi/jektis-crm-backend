@@ -37,6 +37,7 @@ export class ClientRequest extends BaseSchema {
     type: SchemaTypes.String,
     require: true,
     enum: RequestStatus,
+    default: RequestStatus.NON_AFFECTED,
   })
   status: RequestStatus;
   @Prop({

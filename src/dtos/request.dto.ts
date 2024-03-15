@@ -5,11 +5,11 @@ import {
   IsOptional,
   IsPhoneNumber,
   IsString,
+  ValidateNested,
 } from 'class-validator';
-import { RequestType } from '../enums/request-type';
-import { Client } from '../schemas/client.schema';
 import { CreationMethod } from '../enums/creation-method';
 import { RequestStatus } from '../enums/request-status';
+import { Type } from 'class-transformer';
 
 export class ClientDto {
   @IsString()
@@ -33,15 +33,14 @@ export class ClientRequestDto {
   // requestType: RequestType;
   @IsString()
   title: string;
-  client: Client;
+  @ValidateNested()
+  @Type(() => ClientDto)
+  client: ClientDto;
   @IsEnum(CreationMethod)
   creationMethod: CreationMethod;
   @IsString()
   description: string;
-  @IsEnum(RequestStatus)
-  status: RequestStatus;
   @IsOptional()
-  @IsDate()
   deadline?: Date;
   @IsOptional()
   @IsDate()
